@@ -45,7 +45,7 @@ const Steps:React.FC<{f:number}>=({f})=>{
   </div>;
 };
 const Chart:React.FC<{f:number}>=({f})=>{
-  const s=fr(12.02),e=fr(13.04)+30;if(f<s||f>e)return null;
+  const s=fr(12.02),e=fr(14.79);if(f<s||f>e)return null;
   const p=sp(f,s,{damping:11});
   const hs=[0.3,0.45,0.58,0.78,1];
   return <div style={{position:'absolute',left:190,top:1060,width:700,height:360,transform:`perspective(1100px) rotateX(8deg) rotateY(-10deg) scale(${p}) translateY(${Math.sin(f/14)*8}px)`}}>

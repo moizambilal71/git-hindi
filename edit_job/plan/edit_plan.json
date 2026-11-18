@@ -1,25 +1,289 @@
 {
- "style":"RED EDITORIAL",
- "palette":{"ink":"#0E0E10","red":"#E10600","paper":"#F4EFE9"},
- "fps":30,"duration":13.04,
- "clips":[{"clip":"IMG_0535","out_s":0,"out_e":5.52},{"clip":"IMG_0543","out_s":5.52,"out_e":13.04}],
- "cuts":[3.60,5.52,8.01,10.30,11.45],
- "events":[
-  {"id":"B1","start":0.05,"end":2.35,"type":"back_text","text":"HOME|KITCHEN","sub":"if you run a registered","style":"stagger-rise","sfx":["whoosh","pop"]},
-  {"id":"F1","start":2.45,"end":4.05,"type":"front_search","text":"customers near me","asset":"search+pin icons","sfx":["pop","tick*17"]},
-  {"id":"B2","start":4.05,"end":5.45,"type":"back_text","text":"DHAABA|UNCLE","style":"slice-reveal","sfx":["bass","whoosh"]},
-  {"id":"F2","start":4.55,"end":5.45,"type":"front_tile","asset":"utensils icon (no fake logo)","sfx":["glass"]},
-  {"id":"T1","start":5.38,"end":5.70,"type":"transition","style":"halftone-dissolve","sfx":["riser","whoosh"]},
-  {"id":"B3","start":5.55,"end":7.30,"type":"back_text","text":"JHATPAT|REGISTER","style":"blur-scale","sfx":["pop","pop"]},
-  {"id":"F3","start":6.40,"end":7.45,"type":"front_tile","asset":"check icon","sfx":["glass"]},
-  {"id":"T2","start":7.95,"end":8.15,"type":"transition","style":"glitch-cut","sfx":["glitch"]},
-  {"id":"B5","start":7.70,"end":11.30,"type":"back_text","text":"4|STEPS","style":"mask-slide","sfx":["whoosh"]},
-  {"id":"F4","start":8.30,"end":11.40,"type":"front_steps","text":"download|profile|menu|go live","sfx":["pop*4"]},
-  {"id":"T3","start":10.22,"end":10.45,"type":"transition","style":"glass-wipe","sfx":["whoosh"]},
-  {"id":"T4","start":11.38,"end":11.62,"type":"transition","style":"pixel-block","sfx":["glitch","tick"]},
-  {"id":"B6","start":11.45,"end":13.04,"type":"back_text","text":"GO LIVE|EARNING","style":"split-reveal","sfx":["bass","shimmer"]},
-  {"id":"F5","start":12.20,"end":13.04,"type":"front_chart","asset":"capsule bars","sfx":["shimmer"]}
+ "style": "RED EDITORIAL",
+ "palette": {
+  "ink": "#0E0E10",
+  "red": "#E10600",
+  "paper": "#F4EFE9"
+ },
+ "fps": 30,
+ "duration": 14.79,
+ "clips": [
+  {
+   "clip": "IMG_0535",
+   "out_s": 0,
+   "out_e": 5.52
+  },
+  {
+   "clip": "IMG_0543",
+   "out_s": 5.52,
+   "out_e": 13.04
+  }
  ],
- "punch_zooms":[{"t":4.06,"amp":0.06},{"t":6.40,"amp":0.05},{"t":8.32,"amp":0.05},{"t":11.48,"amp":0.07},{"t":12.20,"amp":0.05}],
- "words":[["AGAR AAP",0.0,0.58],["EK REGISTERED",0.58,1.16],["HOME KITCHEN",1.16,1.64],["OPERATE KARTE HAIN",1.64,2.48],["AUR CUSTOMERS",2.48,3.06],["DHOOND RAHE HAIN",3.06,3.72],["TOH DHAABA UNCLE",3.72,4.5],["IS PLATFORM PAR",4.5,5.5],["JHATPAT",5.5,6.4],["REGISTER KARNA",6.4,7.1],["BAHUT SIMPLE HAI",7.1,7.96],["AAP DOWNLOAD KARO",7.96,9.14],["PROFILE CREATE KARO",9.14,10.32],["MENU UPLOAD KARO",10.32,11.48],["GO LIVE",11.48,12.16],["AUR START EARNING",12.16,13.04]]
+ "cuts": [
+  3.6,
+  5.52,
+  8.01,
+  10.3,
+  11.45
+ ],
+ "events": [
+  {
+   "id": "B1",
+   "start": 0.05,
+   "end": 2.35,
+   "type": "back_text",
+   "text": "HOME|KITCHEN",
+   "sub": "if you run a registered",
+   "style": "stagger-rise",
+   "sfx": [
+    "whoosh",
+    "pop"
+   ]
+  },
+  {
+   "id": "F1",
+   "start": 2.45,
+   "end": 4.05,
+   "type": "front_search",
+   "text": "customers near me",
+   "asset": "search+pin icons",
+   "sfx": [
+    "pop",
+    "tick*17"
+   ]
+  },
+  {
+   "id": "B2",
+   "start": 4.05,
+   "end": 5.45,
+   "type": "back_text",
+   "text": "DHAABA|UNCLE",
+   "style": "slice-reveal",
+   "sfx": [
+    "bass",
+    "whoosh"
+   ]
+  },
+  {
+   "id": "F2",
+   "start": 4.55,
+   "end": 5.45,
+   "type": "front_tile",
+   "asset": "utensils icon (no fake logo)",
+   "sfx": [
+    "glass"
+   ]
+  },
+  {
+   "id": "T1",
+   "start": 5.38,
+   "end": 5.7,
+   "type": "transition",
+   "style": "halftone-dissolve",
+   "sfx": [
+    "riser",
+    "whoosh"
+   ]
+  },
+  {
+   "id": "B3",
+   "start": 5.55,
+   "end": 7.3,
+   "type": "back_text",
+   "text": "JHATPAT|REGISTER",
+   "style": "blur-scale",
+   "sfx": [
+    "pop",
+    "pop"
+   ]
+  },
+  {
+   "id": "F3",
+   "start": 6.4,
+   "end": 7.45,
+   "type": "front_tile",
+   "asset": "check icon",
+   "sfx": [
+    "glass"
+   ]
+  },
+  {
+   "id": "T2",
+   "start": 7.95,
+   "end": 8.15,
+   "type": "transition",
+   "style": "glitch-cut",
+   "sfx": [
+    "glitch"
+   ]
+  },
+  {
+   "id": "B5",
+   "start": 7.7,
+   "end": 11.3,
+   "type": "back_text",
+   "text": "4|STEPS",
+   "style": "mask-slide",
+   "sfx": [
+    "whoosh"
+   ]
+  },
+  {
+   "id": "F4",
+   "start": 8.3,
+   "end": 11.4,
+   "type": "front_steps",
+   "text": "download|profile|menu|go live",
+   "sfx": [
+    "pop*4"
+   ]
+  },
+  {
+   "id": "T3",
+   "start": 10.22,
+   "end": 10.45,
+   "type": "transition",
+   "style": "glass-wipe",
+   "sfx": [
+    "whoosh"
+   ]
+  },
+  {
+   "id": "T4",
+   "start": 11.38,
+   "end": 11.62,
+   "type": "transition",
+   "style": "pixel-block",
+   "sfx": [
+    "glitch",
+    "tick"
+   ]
+  },
+  {
+   "id": "B6",
+   "start": 11.45,
+   "end": 14.75,
+   "type": "back_text",
+   "text": "GO LIVE|EARNING",
+   "style": "split-reveal",
+   "sfx": [
+    "bass",
+    "shimmer"
+   ]
+  },
+  {
+   "id": "F5",
+   "start": 12.2,
+   "end": 14.79,
+   "type": "front_chart",
+   "asset": "capsule bars",
+   "sfx": [
+    "shimmer"
+   ]
+  }
+ ],
+ "punch_zooms": [
+  {
+   "t": 4.06,
+   "amp": 0.06
+  },
+  {
+   "t": 6.4,
+   "amp": 0.05
+  },
+  {
+   "t": 8.32,
+   "amp": 0.05
+  },
+  {
+   "t": 11.48,
+   "amp": 0.07
+  },
+  {
+   "t": 12.2,
+   "amp": 0.05
+  }
+ ],
+ "words": [
+  [
+   "AGAR AAP",
+   0.0,
+   0.58
+  ],
+  [
+   "EK REGISTERED",
+   0.58,
+   1.16
+  ],
+  [
+   "HOME KITCHEN",
+   1.16,
+   1.64
+  ],
+  [
+   "OPERATE KARTE HAIN",
+   1.64,
+   2.48
+  ],
+  [
+   "AUR CUSTOMERS",
+   2.48,
+   3.06
+  ],
+  [
+   "DHOOND RAHE HAIN",
+   3.06,
+   3.72
+  ],
+  [
+   "TOH DHAABA UNCLE",
+   3.72,
+   4.5
+  ],
+  [
+   "IS PLATFORM PAR",
+   4.5,
+   5.5
+  ],
+  [
+   "JHATPAT",
+   5.5,
+   6.4
+  ],
+  [
+   "REGISTER KARNA",
+   6.4,
+   7.1
+  ],
+  [
+   "BAHUT SIMPLE HAI",
+   7.1,
+   7.96
+  ],
+  [
+   "AAP DOWNLOAD KARO",
+   7.96,
+   9.14
+  ],
+  [
+   "PROFILE CREATE KARO",
+   9.14,
+   10.32
+  ],
+  [
+   "MENU UPLOAD KARO",
+   10.32,
+   11.48
+  ],
+  [
+   "GO LIVE",
+   11.48,
+   12.16
+  ],
+  [
+   "AUR START EARNING",
+   12.16,
+   13.04
+  ]
+ ]
 }

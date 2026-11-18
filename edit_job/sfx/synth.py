@@ -51,7 +51,7 @@ H("whoosh",7.7);H("pop",8.32);H("pop",9.14,1);H("pop",10.32,2);H("pop",11.48,3)
 H("whoosh",10.22,1);H("glitch",11.38);H("tick",11.5)
 H("bass",11.5);H("shimmer",12.2);H("pop",12.3,2);H("whoosh",3.58)
 json.dump(hits,open("sfx/hits.json","w"))
-dur=13.04;N=int((dur+1)*SR);sfx=np.zeros(N)
+dur=14.79;N=int((dur+1)*SR);sfx=np.zeros(N)
 for n,t,v in hits:
     s,_=at(n,t,v);i=int(t*SR);sfx[i:i+len(s)]+=s[:N-i]
 sfx/=max(1e-9,np.abs(sfx).max())

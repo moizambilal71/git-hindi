@@ -31,7 +31,7 @@ const Pixels:React.FC<{f:number}>=({f})=>{
 export const Top:React.FC=()=>{
   const f=useCurrentFrame();
   const flash=[fr(3.60),fr(5.52)].some(c=>f>=c&&f<c+3)?0.35:0;
-  const prog=f/391;
+  const prog=f/443;
   return <AbsoluteFill>
     <Halftone f={f}/><Glitch f={f}/><GlassWipe f={f}/><Pixels f={f}/>
     <AbsoluteFill style={{background:'#fff',opacity:flash}}/>

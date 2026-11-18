@@ -9,7 +9,7 @@ const BACK:B[]=[
  {s:4.05,e:5.45,style:'slice',cy:640,lines:[{t:'DHAABA',s:4.06,c:W},{t:'UNCLE',s:4.26,c:R}]},
  {s:5.55,e:7.30,style:'blur',cy:640,sub:'',lines:[{t:'JHATPAT',s:5.55,c:W},{t:'REGISTER',s:6.40,c:R}]},
  {s:7.70,e:11.30,style:'mask',cy:640,lines:[{t:'4',s:7.70,c:R},{t:'STEPS',s:8.0,c:W}],sizeMax:430},
- {s:11.45,e:13.04,style:'split',cy:640,lines:[{t:'GO LIVE',s:11.5,c:W},{t:'EARNING',s:12.3,c:R}]},
+ {s:11.45,e:14.75,style:'split',cy:640,lines:[{t:'GO LIVE',s:11.5,c:W},{t:'EARNING',s:12.3,c:R}]},
 ];
 const measure=(t:string)=>{const c=document.createElement('canvas').getContext('2d')!;c.font='100px Anton';return c.measureText(t).width/100;};
 const Line:React.FC<{l:L,f:number,b:B,fs:number,i:number,exit:number}>=({l,f,b,fs,i,exit})=>{

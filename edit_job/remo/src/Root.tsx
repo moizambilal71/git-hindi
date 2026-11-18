@@ -5,7 +5,7 @@ import {Front} from './Front';
 import {Caps} from './Caps';
 import {Top} from './Top';
 import {End} from './End';
-const D=392;
+const D=444;
 export const Root:React.FC=()=>{
   const p={durationInFrames:D,fps:30,width:1080,height:1920};
   return <>
