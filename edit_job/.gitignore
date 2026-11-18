@@ -1,0 +1,8 @@
+layers/
+raw/
+matte/
+node_modules/
+remo/node_modules/
+sfx/*.wav
+plan/chk/
+plan/mchk_*
