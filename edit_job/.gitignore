@@ -1,0 +1,11 @@
+remo/node_modules/
+raw/
+matte/
+layers/
+out/stills/
+out/*.wav
+out/video_noaudio.mp4
+out/final_1080x1920.mp4
+out/sheet*.jpg
+out/logo_chk.jpg
+sfx/*.wav
