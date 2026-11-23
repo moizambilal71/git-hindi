@@ -1,17 +1,76 @@
 import sys, os, subprocess, json
 import numpy as np
-from PIL import Image
+from PIL import Image, ImageDraw, ImageFont
 import shapes
 from shapes import *
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 shapes.FONTDIR = os.environ.get('FONTDIR', os.path.join(HERE, 'fonts'))
-import scenes as SC
+import importlib
+SC = importlib.import_module(os.environ.get('SCENES', 'scenes'))
 
 FPS = 30
 DUR = 241.0
 
 SUBS = json.load(open(os.path.join(HERE, 'subs.json')))   # [[start,end,text,hl], ...]
+
+ROMAN = json.load(open(os.path.join(HERE, 'roman.json')))   # [start,end,[words],[word starts],hl]
+_rcache = {}
+_rfont = None
+
+
+def plate_img(ci, k):
+    key = ('p', ci, k)
+    if key in _rcache:
+        return _rcache[key]
+    f = ImageFont.truetype(os.path.join(shapes.FONTDIR, 'Inter-ExtraBold.otf'), 66)
+    words = ROMAN[ci][2]
+    sp = f.getlength(' ') + 6
+    ws = [f.getlength(w) for w in words]
+    tot = sum(ws) + sp * (len(words) - 1)
+    pw, ph = int(tot) + 100, 134
+    im = Image.new('RGBA', (pw, ph + 20), (0, 0, 0, 0))
+    d = ImageDraw.Draw(im)
+    d.rounded_rectangle([0, 0, pw, ph], 28, fill=(20, 15, 38, 215))
+    x = 50
+    cur = k - 1
+    for i, w in enumerate(words):
+        if i == cur:
+            d.rounded_rectangle([x - 14, 24, x + ws[i] + 14, ph - 24], 18, fill=(255, 236, 190, 255))
+            d.text((x, 32), w, font=f, fill=(40, 24, 24, 255))
+        else:
+            d.text((x, 32), w, font=f, fill=(255, 255, 255, 255 if i < cur else 150))
+        x += ws[i] + sp
+    _rcache[key] = im
+    return im
+
+
+def roman_img(ci, k):
+    global _rfont
+    key = (ci, k)
+    if key in _rcache:
+        return _rcache[key]
+    if _rfont is None:
+        _rfont = ImageFont.truetype(os.path.join(shapes.FONTDIR, 'Inter-ExtraBold.otf'), 84)
+    words = ROMAN[ci][2]
+    hl = ROMAN[ci][4]
+    sp = _rfont.getlength(' ')
+    ws = [_rfont.getlength(w) for w in words]
+    tot = sum(ws) + sp * (len(words) - 1)
+    im = Image.new('RGBA', (int(tot) + 60, 150), (0, 0, 0, 0))
+    d = ImageDraw.Draw(im)
+    x = 30
+    for i, w in enumerate(words):
+        if i < k:
+            col = (255, 214, 126, 255) if hl else (255, 255, 255, 255)
+        else:
+            col = (255, 255, 255, 120)
+        d.text((x + 3, 40 + 4), w, font=_rfont, fill=(0, 0, 0, 150))
+        d.text((x, 40), w, font=_rfont, fill=col, stroke_width=3, stroke_fill=(10, 10, 14, 230))
+        x += ws[i] + sp
+    _rcache[key] = im
+    return im
+
 
 _cache = {}
 
@@ -50,9 +109,9 @@ def sub_img(i):
     if i not in ov['sub']:
         s, e, text, hl = SUBS[i]
         if hl:
-            im = text_block(text, font('NotoNaskhArabic_700Bold.ttf', 66), (255, 214, 126, 255), 960, spacing=1.6, stroke=4, stroke_col=(20, 10, 0))
+            im = text_block(text, font('NotoNaskhArabic_700Bold.ttf', 50), (255, 214, 126, 255), 960, spacing=1.6, stroke=4, stroke_col=(20, 10, 0))
         else:
-            im = text_block(text, font('NotoNaskhArabic_600SemiBold.ttf', 60), (246, 240, 224, 255), 960, spacing=1.6, stroke=4, stroke_col=(8, 8, 12))
+            im = text_block(text, font('NotoNaskhArabic_600SemiBold.ttf', 46), (236, 232, 220, 255), 960, spacing=1.6, stroke=4, stroke_col=(8, 8, 12))
         ov['sub'][i] = im
     return ov['sub'][i]
 
@@ -72,23 +131,39 @@ def frame_at(t):
         f = Image.blend(f0, f1, k)
     f = f.convert('RGBA')
     f.alpha_composite(ov['vig'])
-    f.alpha_composite(ov['band'], (0, H - 640))
+    if not os.environ.get('CARD'):
+        f.alpha_composite(ov['band'], (0, H - 640))
     # film grain
     gx, gy = int(t * 997) % 64, int(t * 613) % 64
     f.alpha_composite(ov['grain'].crop((gx, gy, gx + W, gy + H)))
     # start/end fades
     if t < 1.2:
         SC.fade_to(f, (0, 0, 0), 1 - SC.ease(t / 1.2))
+    if t > DUR - 1.8:
+        SC.fade_to(f, (0, 0, 0), SC.ease((t - (DUR - 1.8)) / 1.6))
     # subtitles
-    for i, (s, e, text, hl) in enumerate(SUBS):
+    for i, (s, e, text, hl) in enumerate([] if os.environ.get('NO_URDU') else SUBS):
         if s - 0.05 <= t <= e + 0.25:
             a = SC.ease((t - (s - 0.05)) / 0.25) * (1 - SC.ease((t - e) / 0.25))
             im = sub_img(i)
             if a > 0.01:
                 im2 = im.copy()
                 im2.putalpha(im.split()[3].point(lambda v: int(v * a)))
-                y = 1440 - im.height // 2 + int(10 * (1 - a))
+                y = 1600 - im.height // 2 + int(10 * (1 - a))
                 f.alpha_composite(im2, (int((W - im.width) / 2), y))
+            break
+    # Roman-Urdu karaoke captions (bold, words light up as they are spoken)
+    for ci, (cs, ce, words, wts, hl) in enumerate(ROMAN):
+        if cs - 0.05 <= t <= ce + 0.18:
+            a = SC.ease((t - (cs - 0.05)) / 0.14) * (1 - SC.ease((t - ce) / 0.18))
+            k = sum(1 for x in wts if t >= x - 0.02)
+            im = plate_img(ci, k) if os.environ.get('CARD') else roman_img(ci, k)
+            if a > 0.01:
+                im2 = im.copy()
+                im2.putalpha(im.split()[3].point(lambda v: int(v * a)))
+                f2 = Image.new('RGBA', f.size, (0, 0, 0, 0))
+                f2.alpha_composite(im2, (int((W - im2.width) / 2), (1690 if os.environ.get('CARD') else (1400 if os.environ.get('NO_URDU') else 1330)) - im2.height // 2 + int(8 * (1 - a))))
+                f = Image.alpha_composite(f.convert('RGBA'), f2)
             break
     return f.convert('RGB')
 
